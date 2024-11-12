@@ -31,7 +31,7 @@ This project is a simple CRUD (Create, Read, Update, Delete) application built u
 
 2. **Install Backend Dependencies:**
    ```
-   cd backend
+   cd server
    npm install
    ```
 
@@ -45,13 +45,13 @@ This project is a simple CRUD (Create, Read, Update, Delete) application built u
 
 5. **Install Frontend Dependencies:**
    ```
-   cd frontend
+   cd client
    npm install
    ```
 
 6. **Run the Frontend:**
    ```
-   npm start
+   npm run dev
    ```
 
    The React app will be running on `http://localhost:3000` and the API on `http://localhost:3001`.
