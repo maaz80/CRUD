@@ -7,7 +7,8 @@ function UpdateUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  
+  const [isUpdated, setIsUpdated] = useState(false);
+
   useEffect(() => {
     axios.get(`http://localhost:3001/getUser/${id}`)
       .then((result) => {
@@ -22,13 +23,22 @@ function UpdateUser() {
     axios.put(`http://localhost:3001/update/${id}`, data)
       .then((result) => {
         console.log(result);
-        navigate('/');
+        setIsUpdated(true); // Show success popup
+        setTimeout(() => {
+          setIsUpdated(false);
+          navigate('/');
+        }, 2000); // Hide popup after 2 seconds and navigate
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <div className="flex h-screen justify-center items-center bg-gray-100">
+      {isUpdated && (
+        <div className="fixed top-96 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg">
+          User updated successfully!
+        </div>
+      )}
       <div className="w-[400px] bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Update User</h2>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +93,7 @@ function UpdateUser() {
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+              className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 transition-colors"
             >
               Update User
             </button>

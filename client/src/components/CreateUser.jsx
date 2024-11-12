@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -6,14 +6,20 @@ import { useNavigate } from 'react-router-dom';
 function CreateUser() {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [showPopup, setShowPopup] = useState(false);
 
   const onSubmit = (data) => {
     axios.post('http://localhost:3001/create', data)
       .then((result) => {
         console.log(result);
-        navigate('/');
+        setShowPopup(true); 
       })
       .catch((err) => console.log(err));
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    navigate('/');
   };
 
   return (
@@ -72,13 +78,30 @@ function CreateUser() {
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+              className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 transition-colors"
             >
               Create User
             </button>
           </div>
         </form>
       </div>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-80">
+            <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">User Created Successfully!</h3>
+            <div className="flex justify-center">
+              <button
+                onClick={closePopup}
+                className="bg-teal-700 text-white py-2 px-4 rounded-md hover:bg-teal-600 transition-colors"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
