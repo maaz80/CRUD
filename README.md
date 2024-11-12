@@ -70,15 +70,17 @@ This project is a simple CRUD (Create, Read, Update, Delete) application built u
 ├── backend
 │   ├── models
 │   │   └── Users.js
-│   ├── server.js
-│   ├── package.json
+│   ├── index.js
 ├── frontend
 │   ├── src
 │   │   ├── components
-│   │   │   ├── User.js
-│   │   │   ├── CreateUser.js
-│   │   │   ├── UpdateUser.js
-│   │   │   └── Navbar.js
+│   │   │   ├── About.jsx
+│   │   │   ├── Contact.jsx
+│   │   │   ├── CreateUser.jsx
+│   │   │   └── Navbar.jsx
+│   │   │   ├── Services.jsx
+│   │   │   ├── UpdateUser.jsx
+│   │   │   ├── User.jsx
 │   │   ├── App.js
 │   │   ├── index.js
 │   ├── package.json
